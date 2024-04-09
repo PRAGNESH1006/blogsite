@@ -1,7 +1,7 @@
 import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (
@@ -12,7 +12,7 @@ export const signup = async (req, res) => {
     username === "" ||
     password === ""
   ) {
-    return res.status(400).json({ message: "All Feilds are required" });
+    next(errorHandler(400, "All Feilds are required")); // from utils.js
   }
 
   // for creating new users
@@ -29,9 +29,6 @@ export const signup = async (req, res) => {
     await newUser.save();
     res.json("You'r Signup has been successfully");
   } catch (error) {
-    res.status(500).json({
-      message: error.message,
-      solution: "Email and Username must uniqe ",
-    });
+    next(error);
   }
 };
