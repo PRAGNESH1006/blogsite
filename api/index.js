@@ -1,6 +1,6 @@
 import express from "express";
 import { mongoose } from "mongoose";
-import userRouters from "./routes/user.route.js";
+import userRoutes from "./routes/user.route.js";
 
 mongoose
   .connect("mongodb+srv://pragneshpadhiyar:1234mp@blog.z7bxr9l.mongodb.net/")
@@ -17,4 +17,4 @@ app.listen(3000, () => {
   console.log("frist server listening on port this 3000");
 });
 
-app.use("/user", userRouters);
+app.use("/api/user", userRoutes);
