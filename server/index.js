@@ -2,7 +2,7 @@ import express from "express";
 import { mongoose } from "mongoose";
 
 mongoose
-  .connect("mongodb+srv://pragneshpadhiyar:1234mp@blog.z7bxr9l.mongodb.net/")
+  .connect("env")
   .then(() => {
     console.log(" db connected");
   })
