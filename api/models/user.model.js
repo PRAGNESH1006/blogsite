@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema(
     profilephoto: {
       type: String,
       default:
-        "https://cdn.lazyshop.com/files/273d4985-ae97-40da-84b1-98340e6f292c/product/6dcc29e0d201aec049623f30ace68e56.jpeg?x-oss-process=style%2Fthumb",
+        "https://media.istockphoto.com/id/1316420668/vector/user-icon-human-person-symbol-social-profile-icon-avatar-login-sign-web-user-symbol.jpg?s=612x612&w=0&k=20&c=AhqW2ssX8EeI2IYFm6-ASQ7rfeBWfrFFV4E87SaFhJE=",
     },
   },
   { timestamps: true }
