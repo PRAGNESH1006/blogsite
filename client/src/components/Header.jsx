@@ -3,8 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaRegSun } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
-import { FaPowerOff, } from "react-icons/fa";
+import { FaPowerOff, FaRegUser } from "react-icons/fa";
 import { toggleTheme } from '../redux/theme/themeSlice';
+import { IoIosMail } from "react-icons/io";
 // import { signoutSuccess } from '../redux/user/userSlice';
 
 export default function Header() {
@@ -56,8 +57,15 @@ export default function Header() {
             label={
               <Avatar alt="User" img={currentUser.profilephoto} rounded />
             }  >
-            <Dropdown.Header><span className="block text-sm"> @{currentUser.username}</span>
-              <span className="block text-sm font-medium truncate">{currentUser.email}</span>
+            <Dropdown.Header>
+              {/* <span className="block text-sm"> @{currentUser.username}</span>
+              <span className="block text-sm font-medium truncate">{currentUser.email}</span> */}
+              <Dropdown.Item icon={FaRegUser} label={currentUser.username} >
+                @{currentUser.username}
+              </Dropdown.Item>
+              <Dropdown.Item icon={IoIosMail} label={currentUser.email} >
+                {currentUser.email}
+              </Dropdown.Item>
             </Dropdown.Header>
             <Link to={"/dashboard?tab=profile"}><Dropdown.Item>Profile</Dropdown.Item>
             </Link>
