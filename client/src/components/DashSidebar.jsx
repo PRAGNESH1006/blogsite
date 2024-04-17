@@ -19,21 +19,21 @@ export default function DashSidebar() {
 
     return (
 
-        <Sidebar className='w-full md:w-56 ' >
-            <Sidebar.Items >
+        <Sidebar className='w-full md:w-56 py-2 ' >
+            <Sidebar.Items  >
                 <Sidebar.ItemGroup className='cursor-pointer'>
                     <Link to='/dashboard?tab=profile' >
-                        <Sidebar.Item active={tab === 'profile'} icon={FaRegUser} className=' my-2' >
+                        <Sidebar.Item as='div' active={tab === 'profile'} icon={FaRegUser} className=' my-2' >
                             Profile
                         </Sidebar.Item>
                     </Link>
                     <Link to='/dashboard?tab=post' >
-                        <Sidebar.Item active={tab === 'post'} icon={BsFillFileEarmarkPostFill} className=' my-2'>
+                        <Sidebar.Item as='div' active={tab === 'post'} icon={BsFillFileEarmarkPostFill} className=' my-2'>
                             Post
                         </Sidebar.Item>
                     </Link>
                     <Link to='/dashboard?tab=comments' >
-                        <Sidebar.Item active={tab === 'comments'} icon={FaComments} className=' my-2'>
+                        <Sidebar.Item as='div' active={tab === 'comments'} icon={FaComments} className=' my-2'>
                             Comments
                         </Sidebar.Item>
                     </Link>
