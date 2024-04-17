@@ -49,7 +49,7 @@ export default function SignIn() {
     } catch (error) {
       dispatch(signInFailure(error.message));
       // setErrorMessage(error.message);
-      // setloading(false);
+      // setloading(false); this.setLoading(false);
     }
   };
   console.log(errorMessage)
