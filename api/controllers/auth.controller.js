@@ -2,6 +2,11 @@ import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { errorHandler } from "../utils/error.js";
+import { response } from "express";
+
+// fro password decryption
+const secretToken = "processenvSECRETTOKEN";
+
 //sign up
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -55,7 +60,6 @@ export const signin = async (req, res, next) => {
       return next(errorHandler(400, "Password is incorrect")); // from utils.js
     }
     // for checking the password and validating the password
-    const secretToken = "processenvSECRETTOKEN";
     const token = jwt.sign({ id: validUser._id }, secretToken, {
       expiresIn: 86400, // expires in 24 hours
     });
@@ -67,6 +71,49 @@ export const signin = async (req, res, next) => {
       .status(200)
       .cookie("access_token", token, { httpOnly: true })
       .json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// google authentication
+
+export const google = async (req, res, next) => {
+  const { email, name, gPhotoUrl } = req.body;
+  try {
+    const validUser = await User.findOne({ email });
+    if (validUser) {
+      const token = jwt.sign({ id: validUser._id }, secretToken);
+      const { password, ...rest } = validUser._doc;
+      res
+        .status(200)
+        .cookie("access token", token, { httpOnly: true })
+        .json(rest);
+    } else {
+      const generatedPassword =
+        Math.random().toString(36).slice(-8) +
+        Math.random().toString(36).slice(-8);
+      const hashPassword = bcryptjs.hashSync(generatedPassword, 10);
+      const newUser = new User({
+        usernsme: name
+          .toLowerCase()
+          .split(" ")
+          .join("")
+          .Math.random()
+          .toString(36)
+          .slice(-8),
+        email,
+        password: hashPassword,
+        profilephoto: gPhotoUrl,
+      });
+      await newUser.save();
+      const token = jwt.sign({ id: newUser._id }, secretToken);
+      const { password, ...rest } = newUser._doc;
+      res
+        .status(200)
+        .cookie("access token", token, { httpOnly: true })
+        .json(rest);
+    }
   } catch (error) {
     next(error);
   }
