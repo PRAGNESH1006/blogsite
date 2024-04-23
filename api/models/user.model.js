@@ -16,10 +16,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    profilephoto: {
+    profilePicture: {
       type: String,
       default:
-        "https://media.istockphoto.com/id/1316420668/vector/user-icon-human-person-symbol-social-profile-icon-avatar-login-sign-web-user-symbol.jpg?s=612x612&w=0&k=20&c=AhqW2ssX8EeI2IYFm6-ASQ7rfeBWfrFFV4E87SaFhJE=",
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+    },
+    isAdmin: {
+      type: Boolean,
+      default: true,
     },
   },
   { timestamps: true }
